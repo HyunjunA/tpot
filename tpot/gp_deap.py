@@ -134,6 +134,8 @@ def varOr(population, toolbox, lambda_, cxpb, mutpb):
                 ind1_cx, _, evaluated_individuals_= toolbox.mate(ind1, ind2)
                 del ind1.fitness.values
 
+                # Check if the offspring is in evaluated_individuals_, if not, add it.
+                # This is to ensure that redundant individuals are not added to offspring.
                 if str(ind1_cx) in evaluated_individuals_:
                     ind1_cx = mutate_random_individual(population, toolbox)
                 offspring.append(ind1_cx)
